@@ -5,7 +5,8 @@ function Home() {
 
   return (
     <div>
-      <h1>WELCOME TO THE HOME PAGE !!!</h1>
+      Random Meme Generator
+      <img src="https://api.memegen.link/images/buzz/memes/memes_everywhere.gif?token=icc12mvkq7hc9ysbbtxr&width=800&frames=50"/>
     </div>
   )
 }

@@ -5,9 +5,11 @@ function CreateAMeme() {
 
   })
 
-  
+
   return (
-    <div>CreateAMeme</div>
+    <div>
+      Create a Meme!
+    </div>
   )
 }
 
