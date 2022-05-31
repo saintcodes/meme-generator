@@ -1,0 +1,131 @@
+{
+  "memes": 
+  [
+    {
+      "id": 1,
+      "name":"Living The Dream",
+      "image":"..images/meme_img/funny_meme1.png",
+      "likes":2
+    },
+    {
+      "id": 2,
+      "name":"Getting This Bread",
+      "image":"..images/meme_img/funny_meme2.png",
+      "likes":2
+    },
+    {
+      "id": 3,
+      "name":" A Good Progammer",
+      "image":"https://s3.amazonaws.com/rails-camp-tutorials/blog/programming+memes/programming-or-googling.jpg",
+      "likes":9
+    },
+    {
+      "id": 4,
+      "name":"Big Deal",
+      "image":"https://static1.srcdn.com/wordpress/wp-content/uploads/2019/11/Big-Deal-Anchorman-Meme.jpg?q=50&fit=crop&w=740&h=492&dpr=1.5",
+      "likes":12
+    },
+    {
+      "id": 5,
+      "name":"Group Project Contribution",
+      "image":"https://simg-memechat.s3.ap-south-1.amazonaws.com/28eab92e8d66589f208fc5d362176f5e.jpg",
+      "likes":6
+    },
+    {
+      "id": 6,
+      "name":"We Cant Afford A Cat",
+      "image":"https://i.pinimg.com/550x/b8/56/76/b85676c5a738e107dbc2bc9dc6fa27a5.jpg",
+      "likes":12
+    },
+    {
+      "id": 7,
+      "name":"When your Boss ask for Proof.",
+      "image":"https://www.boredpanda.com/blog/wp-content/uploads/2019/04/funny-boss-memes-fb29.png",
+      "likes":9
+    },
+    {
+      "id": 8,
+      "name":"You Delicious",
+      "image":"https://www.yourtango.com/sites/default/files/styles/body_image_default/public/image_list/meme3_2.jpg",
+      "likes":2
+    },
+    {
+      "id": 9,
+      "name":"PTSD",
+      "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIKSTSM7zqqd4mZ_OWTngwWQrPNmeCfvYp9w&usqp=CAU",
+      "likes":7
+    },
+    {
+      "id": 10,
+      "name":"Doctor Says...",
+      "image":"https://img.buzzfeed.com/buzzfeed-static/static/2019-04/18/11/campaign_images/buzzfeed-prod-web-05/these-are-the-funniest-parenting-memes-from-2019--2-19497-1555599787-0_dblbig.jpg?resize=1200:*",
+      "likes":2
+    },
+    {
+      "id": 11,
+      "name":"How Do I Put This...",
+      "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzyBNsj-zgA5LgNvIc-YzJIk5_1ZHtrwOjyw&usqp=CAU",
+      "likes":16
+    },
+    {
+      "id": 12,
+      "name":"Companies: Our Employees are fine",
+      "image":"https://d2shvezvv4hf5p.cloudfront.net/wp-content/uploads/2021/04/14120501/hr_meme_employees_ok-1024x985.jpg",
+      "likes":5
+    },
+    {
+      "id": 13,
+      "name":"Software Into Hardware",
+      "image":"https://www.yourtango.com/sites/default/files/styles/body_image_default/public/image_list/meme9_2.jpg",
+      "likes":2
+    },
+    {
+      "id": 14,
+      "name":"When You're Swimming...",
+      "image":"https://funzumo.com/wp-content/uploads/2019/04/27-Funny-Animal-Memes-To-Make-You-Laugh-Till-You-Drop-1.jpg",
+      "likes":8
+    },
+    {
+      "id": 15,
+      "name":"The Face you Make When...",
+      "image":"https://i.pinimg.com/originals/06/f6/46/06f64628d761259b88c60ea351f51c2c.jpg",
+      "likes":3
+    },
+    {
+      "id": 16,
+      "name":"That's a nice song...",
+      "image":"https://cdn.mamamia.com.au/wp/wp-content/uploads/2018/06/18150353/funniest-memes-6.jpg",
+      "likes":6
+    },
+    {
+      "id": 17,
+      "name":"All the info from studying...",
+      "image":"https://c.tenor.com/EhEOzcPZn2MAAAAM/spider-man.gif",
+      "likes":2
+    },
+    {
+      "id": 18,
+      "name":"Life's Too Short...",
+      "image":"https://img-9gag-fun.9cache.com/photo/3131952_460s.jpg",
+      "likes":10
+    },
+    {
+      "id": 19,
+      "name":"Hacking Scene",
+      "image":"https://www.boredpanda.com/blog/wp-content/uploads/2021/12/2-61ae1e704e406__700.jpg",
+      "likes":2
+    },
+    {
+      "id": 20,
+      "name":"How you feel when...",
+      "image":"https://winkgo.com/wp-content/uploads/2019/05/funny-memes-best-01-720x527.jpg",
+      "likes":18
+    },
+    {
+      "id": 21,
+      "name":"When you find out...",
+      "image":"https://static.thehoneycombers.com/wp-content/uploads/sites/4/2020/03/Best-funny-Coronavirus-memes-2020-Honeycombers-Bali-9.jpg",
+      "likes":2
+    }
+  ]
+}
