@@ -13,7 +13,8 @@ code {
 }
 
 .titletext {
-  font-size: medium
+  font-size: medium;
+  color: darkslategray;
 }
 
 .cards {
@@ -64,7 +65,9 @@ code {
 }
 
 .new-meme-form form {
-  display: flex;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  display: fixed;
   justify-content: center;
 }
 

@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './Home';
-import MemeLibrary from './MemeLibrary';
+import GIFLibrary from './GIFLibrary';
 import CreateAMeme from './CreateAMeme';
 import Navigate from './Navigate';
 
@@ -17,8 +17,8 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
-              <Route exact path="/memelib">
-                <MemeLibrary />
+              <Route exact path="/giflib">
+                <GIFLibrary />
               </Route>
               <Route exact path="/create">
                 <CreateAMeme />

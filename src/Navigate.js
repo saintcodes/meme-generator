@@ -12,10 +12,10 @@ function Navigate() {
             <Navbar.Brand href="#"></Navbar.Brand>
             <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="#home">Navigate to: </Navbar.Brand>
+            <Navbar.Brand href="#home" className='titletext'>Navigate to: </Navbar.Brand>
               <Nav className="me-auto">
                 <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/memelib">Meme Library</Nav.Link>
+                <Nav.Link href="/giflib">GIF Library</Nav.Link>
                 <Nav.Link href="/create">Create A Meme</Nav.Link>
               </Nav>
           </Container>
