@@ -1,11 +1,11 @@
 import React from 'react'
 
 function MemeLibrary({gif}) {
-  const {embed_url, id, title} = gif
+  const {id, title} = gif
 
   return (
     <li className="card">
-      <img src={embed_url} alt={title}/>
+      <img src={gif.images.original.url} alt={title}/>
       <h4>{title}</h4>
       <button>Add to Favorites</button>
     </li>
