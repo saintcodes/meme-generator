@@ -11,3 +11,68 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.titletext {
+  font-size: medium
+}
+
+.cards {
+  list-style: none;
+  background-color: darkslategray;
+  
+}
+
+.card {
+  margin: 1rem;
+}
+
+.card img {
+  width: 100%;
+}
+
+.card button {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    width: calc(33% - 2rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card {
+    width: calc(25% - 2rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  .card {
+    width: calc(20% - 2rem);
+  }
+}
+
+.new-meme-form {
+  padding: 2rem 1rem;
+  margin: 2rem 0;
+  background-color: rgba(181, 250, 181, 0.5);
+}
+
+.new-meme-form form {
+  display: flex;
+  justify-content: center;
+}
+
+.new-meme-form input {
+  margin-right: 2rem;
+  flex: 1;
+}
+
+.new-meme-form button {
+  width: 150px;
+}
