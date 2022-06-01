@@ -6,12 +6,6 @@ function GIFLibrary() {
   const [gifs, setGifs] = useState([])
   const [search, setSearch] = useState("")
 
-  // useEffect(() => {
-  //   fetch('https://api.giphy.com/v1/gifs/search?api_key=lptQ8k82eLDdRffSMyrt89vU8HTQCSrR&q=meme&limit=100&offset=0&rating=g&lang=en')
-  //     .then(res => res.json())
-  //     .then(GIFdata => setGifs(GIFdata.data))
-  // }, [])
-
   useEffect(() => {
     fetch('http://localhost:3004/privatememes')
       .then(res => res.json())

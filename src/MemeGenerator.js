@@ -1,6 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import MemeCards from './MemeCards'
+import Button from 'react-bootstrap/Button'
 
 function MemeGenerator() {
+  const [memes, setMemes] = useState([])
+  const [showForm, setShowForm] = useState(false)
   const [formData, setFormData] = useState({
     "name": "",
     "url": "",
@@ -8,30 +12,20 @@ function MemeGenerator() {
     "topText": "",
     "bottomText": "",
   })
-  const [memeCanvas, setMemeCanvas] = useState({
-    'image': "",
-    'width': "",
-    'height': "",
-  })
-  const [canvasImage, setCanvasImage] = useState('https://media.moddb.com/images/members/5/4550/4549205/duck.jpg')
 
+  useEffect(() => {
+    fetch('https://api.imgflip.com/get_memes')
+    .then(res => res.json())
+    .then(memes => setMemes(memes.data.memes))
+  }, [])
+
+  const [canvasImage, setCanvasImage] = useState('https://content.hostgator.com/img/weebly_image_sample.png')
   const imageFileInput = document.querySelector('#imageFileInput')
   const topTextInput = document.querySelector('#topTextInput')
   const bottomTextInput = document.querySelector('#bottomTextInput')
-  const canvas = document.querySelector('#meme')
+  const canvas = document.querySelector('#memegenerator')
 
   let image;
-
-  // imageFileInput.addEventListener('change', () => {
-  //   const imageDataUrl = URL.createObjectURL(imageFileInput.files[0])
-
-  //   image = new Image()
-  //   image.src = imageDataUrl
-  //   image.addEventListener('load', () => {
-  //     updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
-  //   }, { once: true })
-    
-  // })
 
   // topTextInput.addEventListener('change', () => {
   //   updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
@@ -72,15 +66,14 @@ function MemeGenerator() {
     ctx.fillText(bottomText, width/2, height-yOffset)
   }
 
-  function imageChange (e) {
-    console.log(e)
+  function imageChange () {
     const imageDataUrl = URL.createObjectURL(imageFileInput.files[0])
-    image = new Image()
+    image = new Image();
     image.src = imageDataUrl
-    image.addEventListener('load', () => {
-          updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
-        }, { once: true })
     console.log(imageDataUrl)
+    image.addEventListener('load', () => {
+      updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
+        }, { once: true })
   }
 
   function handleChange(e) {
@@ -95,9 +88,21 @@ function MemeGenerator() {
     console.log('submitted')
   }
 
+  function selectImage(e) {
+    image = new Image()
+    image.src = (e.target.value)
+    image.addEventListener('load', () => {
+      updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
+        }, { once: true })
+  }
+
+  function toggleForm () {
+    setShowForm((showForm) => !showForm)
+  }
+
   return (
-    <div className="meme generator">
-      <form onSubmit={handleSubmit}>
+    <div>
+      {showForm ? <form className="zero meme-generator" onSubmit={handleSubmit}>
         <label>Select an Image</label>
           <input 
             type="file" 
@@ -105,7 +110,6 @@ function MemeGenerator() {
             id="imageFileInput" 
             onChange={imageChange}
           />
-          <br></br>
         <label>Top Text</label>
           <input 
             type="text" 
@@ -114,19 +118,32 @@ function MemeGenerator() {
             value={formData.topText} 
             onChange={handleChange}
           />
-          <br></br>
-        <label>Bottom Text</label>
+        <label className="zero">Bottom Text</label>
           <input 
+            className="zero"
             type="text" 
             name="bottomText" 
             id="bottomTextInput" 
             value={formData.bottomText} 
             onChange={handleChange}
           />
-          <br></br>
-        <button type="submit">Add Meme</button>
-      </form>
-      <canvas id='memegenerator' src={canvasImage}></canvas>
+        <Button 
+          className="meme-generator zero"
+          variant="danger" 
+          type="submit"
+        >Submit</Button>
+      </form> : null}
+      <br></br>
+        <Button 
+          className="zero meme-generator" 
+          onClick={toggleForm} 
+          variant="danger" 
+          type="button"
+        >Add Meme</Button>
+      <canvas id='memegenerator' src={image}></canvas>
+      <div className='cards'>
+        {memes.map((meme) => <MemeCards selectImage={selectImage} key= {meme.id} meme={meme}/>)}
+      </div>
     </div>
   )
 }

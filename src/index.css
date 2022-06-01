@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+.zero {
+  padding: 0;
+  margin: 0;
+}
+
 .btn-inline {
   width: 80%;
   margin: auto
@@ -92,7 +97,7 @@ code {
   }
 }
 
-.new-meme-form {
+/* .new-meme-form {
   padding: 2rem 1rem;
   margin: 2rem 0;
   background-color: rgba(181, 250, 181, 0.5);
@@ -112,24 +117,29 @@ code {
 
 .new-meme-form button {
   width: 150px;
-}
+} */
 
 .meme-generator {
-  margin: 20px auto;
+  margin: 8px;
+  margin-bottom: 0px;
   width: 400px;
+  text-align: left;
+  align-content: left;
+  align-self: left;
+  align-items: left;
   font-family: sans-serif
 }
 
 .meme-generator label {
   display: block;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .meme-generator input {
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 #memegenerator {

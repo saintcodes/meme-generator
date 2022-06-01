@@ -21,9 +21,9 @@ function App() {
               <Route exact path="/giflib">
                 <GIFLibrary />
               </Route>
-              <Route exact path="/create">
+              {/* <Route exact path="/create">
                 <CreateAMeme />
-              </Route>
+              </Route> */}
               <Route exact path="/memegenerator">
                 <MemeGenerator />
               </Route>
