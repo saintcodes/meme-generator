@@ -12,6 +12,32 @@ code {
     monospace;
 }
 
+/* //navbar.scss */
+.navbar{
+  width: 100%;
+  max-height: 19vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eee;
+  transition: all .7s ease-in;
+  position: fixed; 
+  top: 0;
+}
+
+/* //IMPORTANT */
+.scrolled{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: lightblue;
+}
+.logo img{
+  width: 50px;
+}
+
+
 .titletext {
   font-size: medium;
   color: darkslategray;

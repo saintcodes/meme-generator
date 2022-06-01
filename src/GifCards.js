@@ -3,15 +3,15 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
 function GifCards({gif}) {
-const {title, id} = gif
+const {title} = gif
 
   return (
     <div>
-      <Card style={{ width: '18rem' }}>
+      <Card className="card text-white bg-dark mb-4" style={{ width: '18rem' }}>
         <Card.Img variant="top" src={gif.images.original.url}/>
         <Card.Body>
-          <Card.Title className='titletext'>{title}</Card.Title>
-          <Button variant="primary">Add to Favorites</Button>
+          <Card.Title>{title}</Card.Title>
+          <Button variant="dark">♡</Button>
         </Card.Body>
       </Card>
     </div>

@@ -8,9 +8,9 @@ function MemeCards({meme}) {
   return (
     <div>
       <Card style={{ width: '18rem' }}>
+          <Card.Title className='titletext'>{name}</Card.Title>
         <Card.Img src={url} variant="top"/>
         <Card.Body>
-          <Card.Title className='titletext'>{name}</Card.Title>
           <Button variant="primary">Create</Button>
         </Card.Body>
       </Card>
