@@ -4,6 +4,7 @@ import Home from './Home';
 import GIFLibrary from './GIFLibrary';
 import CreateAMeme from './CreateAMeme';
 import Navigate from './Navigate';
+import MemeGenerator from './MemeGenerator';
 
 
 function App() {
@@ -11,8 +12,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navigate />
-        <header className="App-header">
+        <Navigate className="App-header"/>
+        <header >
             <Switch>
               <Route exact path="/">
                 <Home />
@@ -22,6 +23,9 @@ function App() {
               </Route>
               <Route exact path="/create">
                 <CreateAMeme />
+              </Route>
+              <Route exact path="/memegenerator">
+                <MemeGenerator />
               </Route>
             </Switch>
         </header>

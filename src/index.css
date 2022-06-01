@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.btn-inline {
+  width: 80%;
+  margin: auto
+}
 /* //navbar.scss */
 .navbar{
   width: 100%;
@@ -37,15 +41,19 @@ code {
   width: 50px;
 }
 
+.left {
+  text-align: left;
+  padding: 10px
+}
 
 .titletext {
   font-size: medium;
-  color: darkslategray;
+  color: red;
 }
 
 .cards {
   list-style: none;
-  background-color: darkslategray;
+  background-color: white;
   
 }
 
@@ -104,4 +112,26 @@ code {
 
 .new-meme-form button {
   width: 150px;
+}
+
+.meme-generator {
+  margin: 20px auto;
+  width: 400px;
+  font-family: sans-serif
+}
+
+.meme-generator label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.meme-generator input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+#memegenerator {
+  width: 100%;
 }

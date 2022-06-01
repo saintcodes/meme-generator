@@ -19,6 +19,7 @@ function Navigate() {
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/giflib">GIF Library</Nav.Link>
                 <Nav.Link href="/create">Create A Meme</Nav.Link>
+                <Nav.Link href="/memegenerator">Meme Generator</Nav.Link>
               </Nav>
           </Container>
             </Navbar>

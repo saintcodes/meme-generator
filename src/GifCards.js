@@ -1,17 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
 function GifCards({gif}) {
-const {title} = gif
+  const [likes, setLikes] = useState (gif.likes)
+
+  const {image} = gif
+
+  function handleClick(e) {
+    setLikes(likes => likes+1)
+  }
 
   return (
     <div>
-      <Card className="card text-white bg-dark mb-4" style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={gif.images.original.url}/>
+      <Card className="card bg-light mb-4" style={{ width: '18rem' }}>
+        <Card.Img variant="top" src={image}/>
         <Card.Body>
-          <Card.Title>{title}</Card.Title>
-          <Button variant="dark">♡</Button>
+          <Button variant="danger" onClick={handleClick}>♡ {likes}</Button>
         </Card.Body>
       </Card>
     </div>
