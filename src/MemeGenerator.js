@@ -5,42 +5,26 @@ import Button from 'react-bootstrap/Button'
 function MemeGenerator() {
   const [memes, setMemes] = useState([])
   const [showForm, setShowForm] = useState(false)
-  // const [formData, setFormData] = useState({
-  //   "name": "",
-  //   "url": "",
-  //   "topText": "",
-  //   "bottomText": "",
-  // })
   const [canvasState, setCanvasState] = useState({
     "name": "",
     "url": "",
     "topText": "",
     "bottomText": "",
   })
-  const [canvasImage, setCanvasImage] = useState("https://content.hostgator.com/img/weebly_image_sample.png")
 
+  const [canvasImage, setCanvasImage] = useState("https://content.hostgator.com/img/weebly_image_sample.png")
+    
   useEffect(() => {
     fetch('https://api.imgflip.com/get_memes')
     .then(res => res.json())
     .then(memes => setMemes(memes.data.memes))
   }, [])
 
-  const imageFileInput = document.querySelector('#imageFileInput')
-  const topTextInput = document.querySelector('#topTextInput')
-  const bottomTextInput = document.querySelector('#bottomTextInput')
   const canvas = document.querySelector('#memegenerator')
-
   let image;
 
-  // topTextInput.addEventListener('change', () => {
-  //   updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
-  // })
-
-  // bottomTextInput.addEventListener('change', () => {
-  //   updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
-  // })
-
   function updateMemeCanvas(canvas, image, topText, bottomText) {
+
     const ctx = canvas.getContext('2d');
     const width = image.width;
     const height = image.height;
@@ -60,43 +44,54 @@ function MemeGenerator() {
     ctx.font = `${fontSize}px sans-serif`
     //add top text
     ctx.textbaseline = 'top'
-    ctx.strokeText(topText, width/2, yOffset)
-    ctx.fillText(topText, width/2, yOffset)
+    ctx.strokeText(canvasState.topText, width/2, yOffset)
+    ctx.fillText(canvasState.topText, width/2, yOffset)
     //add bottom text
     ctx.textbaseline = 'bottom'
-    ctx.strokeText(bottomText, width/2, height-yOffset)
-    ctx.fillText(bottomText, width/2, height-yOffset)
+    ctx.strokeText(canvasState.bottomText, width/2, height-yOffset)
+    ctx.fillText(canvasState.bottomText, width/2, height-yOffset)
   }
 
-  function uploadChange () {
-    const imageDataUrl = URL.createObjectURL(imageFileInput.files[0])
-    image = new Image();
-    image.src = imageDataUrl
-    console.log(imageDataUrl)
-    image.addEventListener('load', () => {
-      updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
-        })
-  }
+  // function uploadChange () {
+  //   const imageDataUrl = URL.createObjectURL(canvasState.url.files[0])
+  //   image = new Image();
+  //   image.src = imageDataUrl
+  //   setCanvasState({...canvasState,
+  //     "url": imageDataUrl})
+  //   image.addEventListener('load', () => {
+  //     updateMemeCanvas(canvas, image, canvasState.topText, canvasState.bottomText)
+  //   })
+  // }
 
   function handleChange(e) {
+    image= new Image()
+    image.src=canvasState.url
     const {name, value} = e.target
-    console.log(name, value)
     setCanvasState({...canvasState, 
-      [name]:value})
-      console.log(canvasState)
+      [name]: value})
+    updateMemeCanvas(canvas, image, canvasState.topText, canvasState.bottomText)
   }
 
   function handleSubmit(e) {
     e.preventDefault()
     console.log('submitted')
+    setCanvasState({
+      "url": "",
+      "topText": "",
+      "bottomText": "",
+    })
   }
 
   function selectImage(e) {
+    canvasState.topText = ""
+    canvasState.bottomText = ""
     image = new Image()
     image.src = (e.target.value)
+    setCanvasState({...canvasState,
+      "url" : e.target.value})
     image.addEventListener('load', () => {
-      updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
-        })
+      updateMemeCanvas(canvas, image)
+    })
   }
 
   function toggleForm () {
@@ -113,13 +108,13 @@ function MemeGenerator() {
       >Add Meme</Button>
       <br></br>
       {showForm ? <form className="zero meme-generator" onSubmit={handleSubmit}>
-        <label>Select an Image</label>
+        {/* <label>Select an Image</label>
           <input 
             type="file" 
             name="file" 
             id="imageFileInput" 
             onChange={uploadChange}
-          />
+          /> */}
         <label>URL</label>
           <input
             type="text"

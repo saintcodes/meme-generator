@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
@@ -24,3 +24,5 @@ function MemeCards({meme, selectImage}) {
 }
 
 export default MemeCards
+
+
