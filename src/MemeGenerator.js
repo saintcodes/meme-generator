@@ -26,10 +26,12 @@ function MemeGenerator() {
   function handleChange(e) {
     image= new Image()
     image.src=canvasState.url
-    const {name, value} = e.target
-    setCanvasState({...canvasState, 
-     [name]: value})
-   updateMemeCanvas(canvas, image, canvasState.topText, canvasState.bottomText)
+    updateMemeCanvas(canvas, image, "", "")
+    setCanvasState({...canvasState,
+      "url": e.target.value,
+      "topText": "",
+      "bottomText": "",
+    })
  }
 
   function handleChangeTop(e) {
