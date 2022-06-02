@@ -5,13 +5,19 @@ import Button from 'react-bootstrap/Button'
 function MemeGenerator() {
   const [memes, setMemes] = useState([])
   const [showForm, setShowForm] = useState(false)
-  const [formData, setFormData] = useState({
+  // const [formData, setFormData] = useState({
+  //   "name": "",
+  //   "url": "",
+  //   "topText": "",
+  //   "bottomText": "",
+  // })
+  const [canvasState, setCanvasState] = useState({
     "name": "",
     "url": "",
-    "author": "",
     "topText": "",
     "bottomText": "",
   })
+  const [canvasImage, setCanvasImage] = useState("https://content.hostgator.com/img/weebly_image_sample.png")
 
   useEffect(() => {
     fetch('https://api.imgflip.com/get_memes')
@@ -19,7 +25,6 @@ function MemeGenerator() {
     .then(memes => setMemes(memes.data.memes))
   }, [])
 
-  const [canvasImage, setCanvasImage] = useState('https://content.hostgator.com/img/weebly_image_sample.png')
   const imageFileInput = document.querySelector('#imageFileInput')
   const topTextInput = document.querySelector('#topTextInput')
   const bottomTextInput = document.querySelector('#bottomTextInput')
@@ -40,13 +45,12 @@ function MemeGenerator() {
     const width = image.width;
     const height = image.height;
     const fontSize = Math.floor(width/10)
-    const yOffset = height/25
+    const yOffset = height/8
 
     //update canvas background
     canvas.width = width;
     canvas.height = height;
     ctx.drawImage(image, 0, 0);
-
     //prepare text
     ctx.strokeStyle = 'black';
     ctx.lineWidth = Math.floor(fontSize/4)
@@ -54,33 +58,32 @@ function MemeGenerator() {
     ctx.textAlign = 'center'
     ctx.lineJoin = 'round'
     ctx.font = `${fontSize}px sans-serif`
-
     //add top text
     ctx.textbaseline = 'top'
     ctx.strokeText(topText, width/2, yOffset)
     ctx.fillText(topText, width/2, yOffset)
-    
     //add bottom text
     ctx.textbaseline = 'bottom'
     ctx.strokeText(bottomText, width/2, height-yOffset)
     ctx.fillText(bottomText, width/2, height-yOffset)
   }
 
-  function imageChange () {
+  function uploadChange () {
     const imageDataUrl = URL.createObjectURL(imageFileInput.files[0])
     image = new Image();
     image.src = imageDataUrl
     console.log(imageDataUrl)
     image.addEventListener('load', () => {
       updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
-        }, { once: true })
+        })
   }
 
   function handleChange(e) {
     const {name, value} = e.target
-    setFormData({...formData, 
+    console.log(name, value)
+    setCanvasState({...canvasState, 
       [name]:value})
-      console.log(formData)
+      console.log(canvasState)
   }
 
   function handleSubmit(e) {
@@ -93,29 +96,45 @@ function MemeGenerator() {
     image.src = (e.target.value)
     image.addEventListener('load', () => {
       updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
-        }, { once: true })
+        })
   }
 
   function toggleForm () {
     setShowForm((showForm) => !showForm)
   }
-
+  
   return (
     <div>
+      <Button 
+        className="zero meme-generator" 
+        onClick={toggleForm} 
+        variant="danger" 
+        type="button"
+      >Add Meme</Button>
+      <br></br>
       {showForm ? <form className="zero meme-generator" onSubmit={handleSubmit}>
         <label>Select an Image</label>
           <input 
             type="file" 
             name="file" 
             id="imageFileInput" 
-            onChange={imageChange}
+            onChange={uploadChange}
           />
+        <label>URL</label>
+          <input
+            type="text"
+            name="url"
+            id="url"
+            value={canvasState.url}
+            onChange={handleChange}
+            >
+            </input>
         <label>Top Text</label>
           <input 
             type="text" 
             name="topText" 
             id="topTextInput" 
-            value={formData.topText} 
+            value={canvasState.topText} 
             onChange={handleChange}
           />
         <label className="zero">Bottom Text</label>
@@ -124,7 +143,7 @@ function MemeGenerator() {
             type="text" 
             name="bottomText" 
             id="bottomTextInput" 
-            value={formData.bottomText} 
+            value={canvasState.bottomText} 
             onChange={handleChange}
           />
         <Button 
@@ -134,13 +153,11 @@ function MemeGenerator() {
         >Submit</Button>
       </form> : null}
       <br></br>
-        <Button 
-          className="zero meme-generator" 
-          onClick={toggleForm} 
-          variant="danger" 
-          type="button"
-        >Add Meme</Button>
-      <canvas id='memegenerator' src={image}></canvas>
+      <canvas 
+        className="canvasbord" 
+        id='memegenerator' 
+        src={canvasImage}
+      ></canvas>
       <div className='cards'>
         {memes.map((meme) => <MemeCards selectImage={selectImage} key= {meme.id} meme={meme}/>)}
       </div>
