@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './Home';
 import GIFLibrary from './GIFLibrary';
-import CreateAMeme from './CreateAMeme';
 import Navigate from './Navigate';
 import MemeGenerator from './MemeGenerator';
 
@@ -21,9 +20,6 @@ function App() {
               <Route exact path="/giflib">
                 <GIFLibrary />
               </Route>
-              {/* <Route exact path="/create">
-                <CreateAMeme />
-              </Route> */}
               <Route exact path="/memegenerator">
                 <MemeGenerator />
               </Route>

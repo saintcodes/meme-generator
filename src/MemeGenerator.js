@@ -55,7 +55,7 @@ function MemeGenerator() {
     const ctx = canvas.getContext('2d');
     const width = image.width;
     const height = image.height;
-    const fontSize = Math.floor(width/10)
+    const fontSize = Math.floor(width/15)
     const yOffset = height/8
 
     //update canvas background
@@ -98,6 +98,7 @@ function MemeGenerator() {
       "topText": "",
       "bottomText": "",
     })
+    setMemes([...memes, canvasState])
   }
 
   function selectImage(e) {
@@ -111,6 +112,7 @@ function MemeGenerator() {
       "bottomText": "",
     })
     image.addEventListener('load', () => {updateMemeCanvas(canvas, image)})
+    window.scrollTo(0,200)
   }
 
   function toggleForm () {
