@@ -23,7 +23,32 @@ function MemeGenerator() {
   const canvas = document.querySelector('#memegenerator')
   let image;
 
-  function updateMemeCanvas(canvas, image, topText, bottomText) {
+  function handleChange(e) {
+    image= new Image()
+    image.src=canvasState.url
+    const {name, value} = e.target
+    setCanvasState({...canvasState, 
+     [name]: value})
+   updateMemeCanvas(canvas, image, canvasState.topText, canvasState.bottomText)
+ }
+
+  function handleChangeTop(e) {
+    image= new Image()
+    image.src=canvasState.url
+    updateMemeCanvas(canvas, image, e.target.value, canvasState.bottomText)
+    setCanvasState({...canvasState, 
+     'topText': e.target.value})
+ }
+  function handleChangeBottom(e) {
+    image= new Image()
+    image.src=canvasState.url
+    updateMemeCanvas(canvas, image, canvasState.topText, e.target.value)
+    setCanvasState({...canvasState, 
+     "bottomText": e.target.value})
+ }
+ 
+ function updateMemeCanvas(canvas, image, toptext, bottomtext) {
+    console.log(toptext)
 
     const ctx = canvas.getContext('2d');
     const width = image.width;
@@ -44,12 +69,12 @@ function MemeGenerator() {
     ctx.font = `${fontSize}px sans-serif`
     //add top text
     ctx.textbaseline = 'top'
-    ctx.strokeText(canvasState.topText, width/2, yOffset)
-    ctx.fillText(canvasState.topText, width/2, yOffset)
+    ctx.strokeText(toptext, width/2, yOffset)
+    ctx.fillText(toptext, width/2, yOffset)
     //add bottom text
     ctx.textbaseline = 'bottom'
-    ctx.strokeText(canvasState.bottomText, width/2, height-yOffset)
-    ctx.fillText(canvasState.bottomText, width/2, height-yOffset)
+    ctx.strokeText(bottomtext, width/2, height-yOffset)
+    ctx.fillText(bottomtext, width/2, height-yOffset)
   }
 
   // function uploadChange () {
@@ -62,15 +87,6 @@ function MemeGenerator() {
   //     updateMemeCanvas(canvas, image, canvasState.topText, canvasState.bottomText)
   //   })
   // }
-
-  function handleChange(e) {
-    image= new Image()
-    image.src=canvasState.url
-    const {name, value} = e.target
-    setCanvasState({...canvasState, 
-      [name]: value})
-    updateMemeCanvas(canvas, image, canvasState.topText, canvasState.bottomText)
-  }
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -88,10 +104,11 @@ function MemeGenerator() {
     image = new Image()
     image.src = (e.target.value)
     setCanvasState({...canvasState,
-      "url" : e.target.value})
-    image.addEventListener('load', () => {
-      updateMemeCanvas(canvas, image)
+      "url" : e.target.value,
+      "topText": "",
+      "bottomText": "",
     })
+    image.addEventListener('load', () => {updateMemeCanvas(canvas, image)})
   }
 
   function toggleForm () {
@@ -130,7 +147,7 @@ function MemeGenerator() {
             name="topText" 
             id="topTextInput" 
             value={canvasState.topText} 
-            onChange={handleChange}
+            onChange={handleChangeTop}
           />
         <label className="zero">Bottom Text</label>
           <input 
@@ -139,7 +156,7 @@ function MemeGenerator() {
             name="bottomText" 
             id="bottomTextInput" 
             value={canvasState.bottomText} 
-            onChange={handleChange}
+            onChange={handleChangeBottom}
           />
         <Button 
           className="meme-generator zero"
