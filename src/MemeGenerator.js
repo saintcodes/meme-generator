@@ -21,18 +21,23 @@ function MemeGenerator() {
   }, [])
 
   const canvas = document.querySelector('#memegenerator')
+  const imageFileInput = document.querySelector('#imageFileInput')
   let image;
 
   function handleChange(e) {
     image= new Image()
     image.src=canvasState.url
-    updateMemeCanvas(canvas, image, "", "")
+    updateMemeCanvas(canvas, image)
     setCanvasState({...canvasState,
       "url": e.target.value,
       "topText": "",
       "bottomText": "",
     })
  }
+
+  function toggleForm () {
+    setShowForm((showForm) => !showForm)
+  }
 
   function handleChangeTop(e) {
     image= new Image()
@@ -41,6 +46,7 @@ function MemeGenerator() {
     setCanvasState({...canvasState, 
      'topText': e.target.value})
  }
+
   function handleChangeBottom(e) {
     image= new Image()
     image.src=canvasState.url
@@ -51,8 +57,6 @@ function MemeGenerator() {
  }
  
  function updateMemeCanvas(canvas, image, toptext, bottomtext) {
-    console.log(toptext)
-
     const ctx = canvas.getContext('2d');
     const width = image.width;
     const height = image.height;
@@ -80,16 +84,33 @@ function MemeGenerator() {
     ctx.fillText(bottomtext, width/2, height-yOffset)
   }
 
-  // function uploadChange () {
-  //   const imageDataUrl = URL.createObjectURL(canvasState.url.files[0])
-  //   image = new Image();
-  //   image.src = imageDataUrl
-  //   setCanvasState({...canvasState,
-  //     "url": imageDataUrl})
-  //   image.addEventListener('load', () => {
-  //     updateMemeCanvas(canvas, image, canvasState.topText, canvasState.bottomText)
-  //   })
-  // }
+  function uploadImage () {
+    canvasState.topText = ""
+    canvasState.bottomText = ""
+    image = new Image();
+    const imageDataUrl = URL.createObjectURL(imageFileInput.files[0])
+    image.src = imageDataUrl
+    setCanvasState({...canvasState,
+      "url" : imageDataUrl,
+      "topText": " ",
+      "bottomText": " ",
+    })
+    image.addEventListener('load', () => {updateMemeCanvas(canvas, image)})
+  }
+  
+  function selectImage(e) {
+    canvasState.topText = ""
+    canvasState.bottomText = ""
+    image = new Image()
+    image.src = (e.target.value)
+    setCanvasState({...canvasState,
+      "url" : e.target.value,
+      "topText": "",
+      "bottomText": "",
+    })
+    image.addEventListener('load', () => {updateMemeCanvas(canvas, image)})
+    window.scrollTo(0,200)
+  }
 
   function handleDownload(e) {
     setCanvasState({
@@ -105,26 +126,6 @@ function MemeGenerator() {
     createEl.click();
     createEl.remove();
   }
-
-
-
-  function selectImage(e) {
-    canvasState.topText = ""
-    canvasState.bottomText = ""
-    image = new Image()
-    image.src = (e.target.value)
-    setCanvasState({...canvasState,
-      "url" : e.target.value,
-      "topText": "",
-      "bottomText": "",
-    })
-    image.addEventListener('load', () => {updateMemeCanvas(canvas, image)})
-    window.scrollTo(0,200)
-  }
-
-  function toggleForm () {
-    setShowForm((showForm) => !showForm)
-  }
   
   return (
     <div>
@@ -136,13 +137,13 @@ function MemeGenerator() {
       >Add Meme</Button>
       <br></br>
       {showForm ? <form className="zero meme-generator">
-        {/* <label>Select an Image</label>
+        <label>Select an Image</label>
           <input 
             type="file" 
             name="file" 
             id="imageFileInput" 
-            onChange={uploadChange}
-          /> */}
+            onChange={uploadImage}
+          />
         <label>URL</label>
           <input
             type="text"
