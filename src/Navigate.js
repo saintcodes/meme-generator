@@ -1,15 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
-import Tooltip from 'react-bootstrap/Tooltip'
 import Nav from 'react-bootstrap/Nav'
+import logo from './images/memes_logo.jpeg'
+
 
 function Navigate() {
-  const [isActive, setIsActive] = useState(false)
-  
-  function handleHover() {
-    setIsActive(isActive => !isActive)
-  }
 
   return (
     <div className='navbar'>
@@ -19,7 +15,7 @@ function Navigate() {
             <Navbar.Brand href="#"></Navbar.Brand>
             <Navbar className="navbar">
           <Container>
-            <Navbar.Brand href="/" className='navbar logo'><img src="https://ih1.redbubble.net/image.1030848299.7534/st,small,845x845-pad,1000x1000,f8f8f8.jpg" alt="Memes logo" style={{width:100, marginTop: -7}}/>
+            <Navbar.Brand href="/" className='navbar logo'><img src={logo} alt="Memes logo" style={{width:100, marginTop: -7}}/>
             </Navbar.Brand>
               <Nav className="navbar">
                 <Nav.Link className="nav-link" href="/">Home</Nav.Link>
