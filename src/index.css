@@ -26,13 +26,11 @@ code {
 .nav-link:hover{
   background-color: lightgray;
   border-radius: 5px;
+  text-decoration:none;
 }
 
-nav_link {
-  textDecoration: 'none',
-  '&:hover' {
-    textDecoration: 'none'
-  }
+.nav_link {
+  text-decoration:none;
 }
 
 .navbar{
