@@ -44,6 +44,7 @@ function MemeGenerator() {
   function handleChangeBottom(e) {
     image= new Image()
     image.src=canvasState.url
+    image.crossOrigin='anonymous'
     updateMemeCanvas(canvas, image, canvasState.topText, e.target.value)
     setCanvasState({...canvasState, 
      "bottomText": e.target.value})
@@ -90,16 +91,22 @@ function MemeGenerator() {
   //   })
   // }
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    console.log('submitted')
+  function handleDownload(e) {
     setCanvasState({
       "url": "",
       "topText": "",
       "bottomText": "",
     })
-    setMemes([...memes, canvasState])
+    let canvasUrl = canvas.toDataURL("image/jpeg", 0.5);
+    console.log(canvasUrl);
+    const createEl = document.createElement('a');
+    createEl.href = canvasUrl;
+    createEl.download = "download-this-canvas";
+    createEl.click();
+    createEl.remove();
   }
+
+
 
   function selectImage(e) {
     canvasState.topText = ""
@@ -128,7 +135,7 @@ function MemeGenerator() {
         type="button"
       >Add Meme</Button>
       <br></br>
-      {showForm ? <form className="zero meme-generator" onSubmit={handleSubmit}>
+      {showForm ? <form className="zero meme-generator">
         {/* <label>Select an Image</label>
           <input 
             type="file" 
@@ -163,10 +170,12 @@ function MemeGenerator() {
             onChange={handleChangeBottom}
           />
         <Button 
+          id='download' 
           className="meme-generator zero"
           variant="danger" 
-          type="submit"
-        >Submit</Button>
+          type="button"
+          onClick={handleDownload}
+        >Download</Button>
       </form> : null}
       <br></br>
       <canvas 
