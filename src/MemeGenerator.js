@@ -179,11 +179,12 @@ function MemeGenerator() {
         >Download</Button>
       </form> : null}
       <br></br>
-      <canvas 
+      <canvas
         className="canvasbord" 
         id='memegenerator' 
         src={canvasImage}
-      ></canvas>
+      >
+      </canvas>
       <div className='cards'>
         {memes.map((meme) => <MemeCards selectImage={selectImage} key= {meme.id} meme={meme}/>)}
       </div>
