@@ -12,7 +12,7 @@ function MemeGenerator() {
     "bottomText": "",
   })
 
-  const [canvasImage, setCanvasImage] = useState("https://content.hostgator.com/img/weebly_image_sample.png")
+  // const [canvasImage, setCanvasImage] = useState("https://content.hostgator.com/img/weebly_image_sample.png")
     
   useEffect(() => {
     fetch('https://api.imgflip.com/get_memes')
@@ -182,7 +182,7 @@ function MemeGenerator() {
       <canvas
         className="canvasbord" 
         id='memegenerator' 
-        src={canvasImage}
+        src={""}
       >
       </canvas>
       <div className='cards'>
