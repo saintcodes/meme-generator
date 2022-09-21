@@ -93,7 +93,7 @@ function MemeGenerator() {
     setCanvasState({...canvasState,
       "url" : imageDataUrl,
       "topText": " ",
-      "bottomText": " ",
+      "bottdsomText": " ",
     })
     image.addEventListener('load', () => {updateMemeCanvas(canvas, image)})
   }
